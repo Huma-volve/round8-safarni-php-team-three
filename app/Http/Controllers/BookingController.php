@@ -80,7 +80,7 @@ class BookingController extends Controller
     public function getUserBookings(Request $request)
     {
         $request->validate([
-            'type' =>'required|string|in:Car,Flights,Room,Tour'
+            'type' =>'required|string|in:Car,Flight,Room,Tour'
         ]);
 
         $bookings = $this->bookRepository->getUserBookings($request->type);
