@@ -15,25 +15,25 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-
-            CategorySeeder::class,
+            RoleSeeder::class,
             UserSeeder::class,
+            CategorySeeder::class,
+
+            // Base entities
             HotelSeeder::class,
             RoomSeeder::class,
-            ImageSeeder::class,
-            FlightSeeder::class,
-            RoleSeeder::class,
             CarSeeder::class,
             AirportSeeder::class,
+            FlightSeeder::class,
             SeatSeeder::class,
-            ReviewSeeder::class,
 
-           
-
-        ]);
-
-        $this->call([
+            // Tours (moved up because Favorites depend on it)
             TourSeeder::class,
+
+            // Relations / Dependent data
+            ImageSeeder::class,
+            ReviewSeeder::class,
+            FavoriteSeeder::class,
         ]);
     }
 }
