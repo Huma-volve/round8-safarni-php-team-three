@@ -20,7 +20,7 @@ class TourCardResource extends JsonResource
             'rating_average' => round(optional($this->reviews)->avg('rating'), 1),
             'reviews_count' => optional($this->reviews)->count(),
             'price' => $this->price,
+            'is_favourite' => auth('sanctum')->check() ? $this->favorites()->where('user_id', auth('sanctum')->id())->exists() : false,
         ];
     }
 }
-

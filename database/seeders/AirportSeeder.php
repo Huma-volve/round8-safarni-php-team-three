@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Airport;
 
 class AirportSeeder extends Seeder
 {
@@ -137,10 +138,10 @@ class AirportSeeder extends Seeder
 
 
         foreach ($airports as $airport) {
-            $airport['created_at'] = Carbon::now();
-            $airport['updated_at'] = Carbon::now();
+            Airport::updateOrCreate(
+                ['airport_code' => $airport['airport_code']],
+                $airport
+            );
         }
-
-        DB::table('airports')->insert($airports);
     }
 }

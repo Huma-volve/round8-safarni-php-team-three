@@ -29,6 +29,7 @@ class TourDetailResource extends JsonResource
             'reviews_count' => optional($this->reviews)->count(),
             'schedules' => $this->schedules,
             'price' => $this->price,
+            'is_favourite' => auth('sanctum')->check() ? $this->favorites()->where('user_id', auth('sanctum')->id())->exists() : false,
         ];
     }
 }
