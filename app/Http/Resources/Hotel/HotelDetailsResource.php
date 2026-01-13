@@ -38,9 +38,18 @@ class HotelDetailsResource extends JsonResource
           
                     return [
           
-                        'id' => $room->id,
-          
-                        'name' => $room->name,
+                'id' => $room->id,
+    
+                'name' => $room->name,
+
+                'price_per_night' => (float) $room->price_per_night,
+    
+                'images' => $room->relationLoaded('images') && $room->images->isNotEmpty()
+
+                   ? $room->images->pluck('url')
+   
+                   : [],
+
                     ];
                 }),
           

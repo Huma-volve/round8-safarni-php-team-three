@@ -9,52 +9,82 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ImageFactory extends Factory
 {
-    protected $model = Image::class;
+     protected $model = Image::class;
 
     public function definition()
+    
     {
-       
-        $types = ['App\Models\Hotel', 'App\Models\Room'];
     
-        $type = $this->faker->randomElement($types);
+        $type = $this->faker->randomElement([
+    
+            Hotel::class,
+    
+            Room::class,
+    ]);
 
-       
-        $id = $type::count() ? $type::inRandomOrder()->first()->id : null;
+    if ($type === Hotel::class) {
 
-        if (!$id) {
-            return []; 
+        $hotel = Hotel::inRandomOrder()->first();
+
+        if (! $hotel) {
+    
+            return [];
+    
         }
-
-            $hotelImages = [
-    
-                'https://picsum.photos/id/1015/640/480',
-                'https://picsum.photos/id/1016/640/480',
-                'https://picsum.photos/id/1020/640/480',
-                'https://picsum.photos/id/1024/640/480',
-                'https://picsum.photos/id/1027/640/480',
-            ];
-
-    
-            $roomImages = [
-    
-                'https://picsum.photos/id/1035/640/480',
-                'https://picsum.photos/id/1036/640/480',
-                'https://picsum.photos/id/1040/640/480',
-                'https://picsum.photos/id/1044/640/480',
-                'https://picsum.photos/id/1047/640/480',
-            ];
-
-
-        $url = $type === Hotel::class
-
-            ? $this->faker->randomElement($hotelImages)
-            : $this->faker->randomElement($roomImages);
 
         return [
     
-            'url' => $url,
-            'imageable_id' => $id,
-            'imageable_type' => $type,
+            'url' => $this->faker->randomElement([
+    
+                'https://picsum.photos/id/1015/640/480',
+    
+                'https://picsum.photos/id/1016/640/480',
+    
+                'https://picsum.photos/id/1020/640/480',
+    
+                'https://picsum.photos/id/1024/640/480',
+    
+                'https://picsum.photos/id/1027/640/480',
+            ]),
+    
+            'imageable_id' => $hotel->id,
+    
+            'imageable_type' => Hotel::class,
         ];
+    
     }
+
+   
+    $room = Room::where('is_available', true)
+    
+    ->inRandomOrder()
+    
+    ->first();
+
+    if (! $room) {
+    
+        return [];
+    }
+
+    return [
+    
+        'url' => $this->faker->randomElement([
+    
+            'https://picsum.photos/id/1035/640/480',
+    
+            'https://picsum.photos/id/1036/640/480',
+    
+            'https://picsum.photos/id/1040/640/480',
+    
+            'https://picsum.photos/id/1044/640/480',
+    
+            'https://picsum.photos/id/1047/640/480',
+        ]),
+    
+        'imageable_id' => $room->id,
+    
+        'imageable_type' => Room::class,
+    ];
+}
+
 }
