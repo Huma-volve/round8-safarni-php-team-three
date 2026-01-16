@@ -28,33 +28,72 @@ class TourSeeder extends Seeder
                 'title' => 'Magical Paris',
                 'slug' => 'magical-paris',
                 'type' => 'full day tour',
-                'location' => 'Paris, France',
+                'location' => 'France, Paris',
                 'price' => 1200.00,
                 'duration' => 5,
                 'visit_season' => 'Spring',
-                'activities' => ['Eiffel Tower Visit', 'Seine River Cruise', 'Louvre Museum'],
+                'activities' => [
+                    [
+                        'title' => 'Eiffel Tower Visit',
+                        'description' => 'Visit the iconic Eiffel Tower and enjoy the view of Paris.',
+                    ],
+                    [
+                        'title' => 'Seine River Cruise',
+                        'description' => 'Relax on a cruise along the Seine River.',
+                    ],
+                    [
+                        'title' => 'Louvre Museum',
+                        'description' => 'Explore the Louvre and see famous artworks like the Mona Lisa.',
+                    ],
+                ],
                 'recommendation' => 'Perfect for couples and art lovers.',
             ],
             [
                 'title' => 'Safari Adventure in Kenya',
                 'slug' => 'safari-kenya',
                 'type' => 'full day tour',
-                'location' => 'Masai Mara, Kenya',
+                'location' => 'Kenya, Masai Mara',
                 'price' => 2500.00,
                 'duration' => 7,
                 'visit_season' => 'Summer',
-                'activities' => ['Game Drive', 'Masai Mara Visit', 'Camping'],
+                'activities' => [
+                    [
+                        'title' => 'Game Drive',
+                        'description' => 'Experience a wildlife game drive in Masai Mara.',
+                    ],
+                    [
+                        'title' => 'Masai Mara Visit',
+                        'description' => 'Visit the Masai Mara region and learn about local culture.',
+                    ],
+                    [
+                        'title' => 'Camping',
+                        'description' => 'Spend a night camping under the African sky.',
+                    ],
+                ],
                 'recommendation' => 'Bring good binoculars and a camera.',
             ],
             [
                 'title' => 'Kyoto Cultural Tour',
                 'slug' => 'kyoto-cultural',
                 'type' => 'full day tour',
-                'location' => 'Kyoto, Japan',
+                'location' => 'Japan, Kyoto',
                 'price' => 1800.00,
                 'duration' => 4,
                 'visit_season' => 'Autumn',
-                'activities' => ['Tea Ceremony', 'Temple Visits', 'Bamboo Forest Walk'],
+                'activities' => [
+                    [
+                        'title' => 'Tea Ceremony',
+                        'description' => 'Participate in a traditional Japanese tea ceremony.',
+                    ],
+                    [
+                        'title' => 'Temple Visits',
+                        'description' => 'Visit famous temples and shrines in Kyoto.',
+                    ],
+                    [
+                        'title' => 'Bamboo Forest Walk',
+                        'description' => 'Walk through the beautiful Arashiyama bamboo forest.',
+                    ],
+                ],
                 'recommendation' => 'Wear comfortable walking shoes.',
             ],
         ];
