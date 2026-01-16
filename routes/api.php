@@ -1,20 +1,24 @@
 <?php
 
 use App\Http\Controllers\Api\CategoryController;
-use App\Http\Controllers\Api\TourController;
 use App\Http\Controllers\Api\FavoriteController;
-use App\Models\Flight;
-use App\Models\User;
+use App\Http\Controllers\Api\Hotel\HotelBookingResourceController;
+use App\Http\Controllers\Api\Hotel\HotelResourceController;
+use App\Http\Controllers\Api\Hotel\HotelReviewResourceController;
+use App\Http\Controllers\Api\Hotel\RoomResourceController;
+use App\Http\Controllers\Api\TourBookingController;
+use App\Http\Controllers\Api\TourController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\Payment\PaymentController;
 use App\Http\Controllers\Payment\PaymentWebhookController;
+use App\Http\Controllers\SearchController;
+use App\Models\Flight;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\Hotel\HotelResourceController;
-use App\Http\Controllers\Api\Hotel\RoomResourceController;
-use App\Http\Controllers\Api\Hotel\HotelBookingResourceController;
-use App\Http\Controllers\Api\Hotel\HotelReviewResourceController;
+
+
 
 
 Route::get('/user', function (Request $request) {
@@ -32,6 +36,7 @@ Route::apiResource('hotel', HotelResourceController::class) ->only(['index', 'sh
 
 Route::apiResource('room', RoomResourceController::class) ->only(['show']);
 
+Route::get('tours/search', [SearchController::class, 'search']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
