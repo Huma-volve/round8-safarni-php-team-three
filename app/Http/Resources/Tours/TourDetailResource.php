@@ -14,7 +14,20 @@ class TourDetailResource extends JsonResource
             'slug' => $this->slug,
             'duration' => $this->duration,
             'visit_season' => $this->visit_season,
-            'activities' => $this->activities,
+            'location' => $this->location,
+            'activities' => collect($this->activities ?? [])->map(function ($activity) {
+                if (is_array($activity)) {
+                    return [
+                        'title' => $activity['title'] ?? ($activity['name'] ?? null),
+                        'description' => $activity['description'] ?? null,
+                    ];
+                }
+
+                return [
+                    'title' => (string) $activity,
+                    'description' => null,
+                ];
+            }),
             'recommendation' => $this->recommendation,
             'images' => $this->images->pluck('url'),
             'reviews' => $this->reviews->map(function ($review) {
@@ -33,4 +46,3 @@ class TourDetailResource extends JsonResource
         ];
     }
 }
-
