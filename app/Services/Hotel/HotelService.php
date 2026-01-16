@@ -2,6 +2,7 @@
 
 namespace App\Services\Hotel;
 use App\Models\Hotel;
+use App\Models\Room;
 
 class HotelService {
     
@@ -53,7 +54,9 @@ class HotelService {
 
        
         $hotel->rooms = $hotel->rooms()
-        
+
+        ->with('images')
+
         ->where('is_available', true)
               
         ->whereDoesntHave('bookingDetails', function($q) {
@@ -65,6 +68,7 @@ class HotelService {
             });
         
         })
+
         ->paginate($roomsPerPage);
 
         return $hotel;
