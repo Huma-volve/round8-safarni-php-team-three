@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ResetPasswordRequest extends FormRequest
+class SearchRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class ResetPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['required', 'exists:users,id'],
-            'otp' => ['required', 'digits:4'],
-            'password' => ['required', 'confirmed', 'min:8'],
+            'location'   => 'required|string',
+            'min_price'  => 'nullable|numeric',
+            'max_price'  => 'nullable|numeric',
         ];
     }
 }
